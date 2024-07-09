@@ -23,6 +23,9 @@ Author: i11 - Embedded Software, RWTH Aachen University
 */
 
 #include "rtps/entities/Domain.h"
+
+#include <Arduino.h>
+
 #include "rtps/utils/Log.h"
 #include "rtps/utils/udpUtils.h"
 
@@ -507,11 +510,8 @@ rtps::GuidPrefix_t Domain::generateGuidPrefix(ParticipantId_t id) const {
   if (Config::BASE_GUID_PREFIX == GUID_RANDOM) {
     for (unsigned int i = 0; i < rtps::Config::BASE_GUID_PREFIX.id.size();
          i++) {
-#if PLATFORM_ESP32
-      prefix.id[i] = esp_random();
-#else
-      prefix.id[i] = rand();
-#endif
+      // Arduino's Random Number Generator
+      prefix.id[i] = random(256);
     }
   } else {
     for (unsigned int i = 0; i < rtps::Config::BASE_GUID_PREFIX.id.size();
