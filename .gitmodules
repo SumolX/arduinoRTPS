@@ -1,3 +1,6 @@
 [submodule "thirdparty/googletest"]
 	path = thirdparty/googletest
 	url = https://github.com/google/googletest.git
+[submodule "Micro-CDR"]
+	path = Micro-CDR
+	url = https://github.com/eProsima/Micro-CDR.git
