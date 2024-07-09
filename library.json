@@ -1,12 +1,12 @@
 {
-  "name": "embeddedRTPS",
+  "name": "arduinoRTPS",
   "version": "0.0.1",
-  "keywords": "embedded, rtps, dds, rtos",
+  "keywords": "arduino, embedded, rtps, dds, rtos",
   "description": "A portable and open-source C++ implementation of the Real-Time Publish-Subscribe Protocol (RTPS) for embedded system",
   "repository":
   {
     "type": "git",
-    "url": "https://github.com/SumolX/embeddedRTPS.git"
+    "url": "https://github.com/SumolX/arduinoRTPS.git"
   },
   "frameworks": "arduino",
   "platforms": "esp32",
