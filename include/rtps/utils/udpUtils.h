@@ -19,19 +19,19 @@ constexpr ip4_addr transformIP4ToU32(uint8_t MSB, uint8_t p2, uint8_t p1,
   return ip4_addr{PP_HTONL(LWIP_MAKEU32(MSB, p2, p1, LSB))};
 }
 
-constexpr Ip4Port_t getBuiltInUnicastPort(ParticipantId_t participantId) {
+inline Ip4Port_t getBuiltInUnicastPort(ParticipantId_t participantId) {
   return PB + DG * Config::DOMAIN_ID + D1 + PG * participantId;
 }
 
-constexpr Ip4Port_t getBuiltInMulticastPort() {
+inline Ip4Port_t getBuiltInMulticastPort() {
   return PB + DG * Config::DOMAIN_ID + D0;
 }
 
-constexpr Ip4Port_t getUserUnicastPort(ParticipantId_t participantId) {
+inline Ip4Port_t getUserUnicastPort(ParticipantId_t participantId) {
   return PB + DG * Config::DOMAIN_ID + D3 + PG * participantId;
 }
 
-constexpr Ip4Port_t getUserMulticastPort() {
+inline Ip4Port_t getUserMulticastPort() {
   return PB + DG * Config::DOMAIN_ID + D2;
 }
 
