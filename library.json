@@ -14,10 +14,10 @@
     "libArchive": false,
     "flags": [
         "-I include",
-        "-I thirdparty/Micro-CDR/include",
-        "-I thirdparty/Micro-CDR/build/include"
+        "-I Micro-CDR/include",
+        "-I Micro-CDR/build/include"
     ],
     "srcDir": ".",
-    "srcFilter": "+<*> -<thirdparty/Micro-CDR/build>"
+    "srcFilter": "+<*> -<Micro-CDR/build>"
    }
 }
