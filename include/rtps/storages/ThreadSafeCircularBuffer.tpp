@@ -1,6 +1,5 @@
 
-#ifndef RTPS_THREADSAFECIRCULARBUFFER_TPP
-#define RTPS_THREADSAFECIRCULARBUFFER_TPP
+#pragma once
 
 #include "rtps/utils/Lock.h"
 #include "rtps/utils/Log.h"
@@ -127,6 +126,5 @@ inline void ThreadSafeCircularBuffer<T, SIZE>::incrementHead() {
     incrementTail();
   }
 }
-} // namespace rtps
 
-#endif // RTPS_THREADSAFECIRCULARBUFFER_TPP
+}

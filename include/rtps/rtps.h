@@ -1,39 +1,80 @@
-/*
-The MIT License
-Copyright (c) 2019 Lehrstuhl Informatik 11 - RWTH Aachen University
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE
+#pragma once
 
-This file is part of embeddedRTPS.
+#include <functional>
 
-Author: i11 - Embedded Software, RWTH Aachen University
-*/
-
-#ifndef RTPS_RTPS_H
-#define RTPS_RTPS_H
+#include <Arduino.h>
 
 #include "rtps/entities/Domain.h"
 
+/**
+ *  Forward Declarations
+ */
+class IPAddress;
+class Stream;
+
 namespace rtps {
 
-#if defined(unix) || defined(__unix__) || defined(WIN32) || defined(_WIN32) || \
-    defined(__WIN32) && !defined(__CYGWIN__)
-void init();
-#endif
+struct Comms {
+  /**
+   *  Destructor
+   */
+  virtual ~Comms() = default;
 
-} // namespace rtps
+  /**
+   *  Methods
+   */
+  virtual void write(const uint8_t* data, size_t size) = 0;
 
-#endif // RTPS_RTPS_H
+  /**
+   *  Members
+   */
+  std::function<size_t(const uint8_t* data, size_t size)> onReadHandler;
+};
+
+class RTPS : public Comms {
+public:
+
+    /**
+     *  Destructor/Constructor
+     */
+    ~RTPS() = default;
+    RTPS(const IPAddress& ipAddress, Stream& stream);
+
+    /**
+     *  Initialization routine.
+     */
+    void begin();
+
+    /**
+     *  Non-blocking data acquisition routine.
+     */
+    void update();
+
+    /**
+     *  Provide external access to write routine.
+     */
+    void write(const uint8_t* buffer, size_t size);
+
+    /**
+     *  Accessors
+     */
+    const IPAddress& getIpAddress();
+
+private:
+
+    /**
+     *  Default Constructor Disabled
+     */
+    RTPS() = delete;
+
+    /**
+     *  Members
+     */
+    const IPAddress& _ipAddress;
+    Stream&          _stream;
+    size_t           _written;
+    uint8_t          _buffer[512];
+    rtps::Domain     _domain;
+};
+
+};

@@ -12,4 +12,4 @@ bool createMutex(SemaphoreHandle_t *mutex) {
   }
 }
 
-} // namespace rtps
+}

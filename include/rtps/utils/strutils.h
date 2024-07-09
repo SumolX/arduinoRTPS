@@ -1,9 +1,4 @@
-//
-// Created by andreas on 13.01.19.
-//
-
-#ifndef RTPS_STRUTILS_H
-#define RTPS_STRUTILS_H
+#pragma once
 
 #include "rtps/common/types.h"
 
@@ -36,5 +31,3 @@ inline int guid2Str(rtps::Guid_t guid, char* str, size_t size) {
   bytes += entityId2Str(guid.entityId, &str[bytes], size - bytes);
   return bytes;
 }
-
-#endif // RTPS_STRUTILS_H
