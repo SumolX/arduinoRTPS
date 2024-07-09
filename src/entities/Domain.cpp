@@ -27,12 +27,14 @@ Author: i11 - Embedded Software, RWTH Aachen University
 #include "rtps/utils/udpUtils.h"
 
 #if DOMAIN_VERBOSE && RTPS_GLOBAL_VERBOSE
+#ifndef DOMAIN_LOG
 #define DOMAIN_LOG(...)                                                        \
   if (true) {                                                                  \
     printf("[Domain] ");                                                       \
     printf(__VA_ARGS__);                                                       \
     printf("\n");                                                              \
   }
+#endif
 #else
 #define DOMAIN_LOG(...) //
 #endif
@@ -505,7 +507,11 @@ rtps::GuidPrefix_t Domain::generateGuidPrefix(ParticipantId_t id) const {
   if (Config::BASE_GUID_PREFIX == GUID_RANDOM) {
     for (unsigned int i = 0; i < rtps::Config::BASE_GUID_PREFIX.id.size();
          i++) {
+#if PLATFORM_ESP32
+      prefix.id[i] = esp_random();
+#else
       prefix.id[i] = rand();
+#endif
     }
   } else {
     for (unsigned int i = 0; i < rtps::Config::BASE_GUID_PREFIX.id.size();
