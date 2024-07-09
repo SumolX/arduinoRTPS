@@ -18,6 +18,6 @@
         "-I Micro-CDR/build/include"
     ],
     "srcDir": ".",
-    "srcFilter": "+<*> -<Micro-CDR/build>"
+    "srcFilter": "+<*> -<Micro-CDR/build> -<Micro-CDR/examples> -<Micro-CDR/test>"
    }
 }
