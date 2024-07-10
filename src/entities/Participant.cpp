@@ -360,13 +360,13 @@ void Participant::refreshRemoteParticipantLiveliness(
   }
 }
 
-bool Participant::hasReaderWithMulticastLocator(ip4_addr_t address) {
+bool Participant::hasReaderWithMulticastLocator(const IPAddress& address) {
   Lock lock{m_mutex};
   for (uint8_t i = 0; i < m_readers.size(); i++) {
     if (m_readers[i] == nullptr) {
       continue;
     }
-    if (m_readers[i]->m_attributes.multicastLocator.isSameAddress(&address)) {
+    if (m_readers[i]->m_attributes.multicastLocator.isSameAddress(address)) {
       return true;
     }
   }

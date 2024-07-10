@@ -1,5 +1,7 @@
 #pragma once
 
+#include <IPAddress.h>
+
 #include "rtps/common/types.h"
 #include "rtps/storages/PBufWrapper.h"
 
@@ -7,7 +9,7 @@ namespace rtps {
 
 struct PacketInfo {
   Ip4Port_t srcPort; // TODO Do we need that?
-  ip4_addr_t destAddr;
+  IPAddress destAddr;
   Ip4Port_t destPort;
   PBufWrapper buffer;
 

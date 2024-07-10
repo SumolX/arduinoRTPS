@@ -72,10 +72,10 @@ void rtps::Writer::manageSendOptions() {
       for (auto &avproxy : m_proxies) {
         if (avproxy.remoteMulticastLocator.kind ==
                 LocatorKind_t::LOCATOR_KIND_UDPv4 &&
-            avproxy.remoteMulticastLocator.getIp4Address().addr ==
-                proxy.remoteMulticastLocator.getIp4Address().addr &&
-            avproxy.remoteLocator.getIp4Address().addr !=
-                proxy.remoteLocator.getIp4Address().addr) {
+            avproxy.remoteMulticastLocator.getIp4Address() ==
+                proxy.remoteMulticastLocator.getIp4Address() &&
+            avproxy.remoteLocator.getIp4Address() !=
+                proxy.remoteLocator.getIp4Address()) {
           if (avproxy.suppressUnicast == false) {
             avproxy.useMulticast = false;
             avproxy.suppressUnicast = true;

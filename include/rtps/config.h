@@ -10,13 +10,14 @@ namespace rtps {
 
 // define only if using FreeRTOS
 #define OS_IS_FREERTOS
-#define PLATFORM_ESP32 1
 
 struct Config {
     /**
      *  Runtime Defaults
      */
-    static IPAddress IP_ADDRESS;
+    static IPAddress ADDRESS;
+    static IPAddress NETWORK;
+    static IPAddress GATEWAY;
     static GuidPrefix_t BASE_GUID_PREFIX;
     static uint8_t DOMAIN_ID;
 

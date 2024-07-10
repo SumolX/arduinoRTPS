@@ -172,8 +172,8 @@ bool SPDPAgent::addProxiesForBuiltInEndpoints() {
   }
 
 #if SPDP_VERBOSE
-  ip4_addr_t ip4addr = locator->getIp4Address();
-  const char *addr = ip4addr_ntoa(&ip4addr);
+  auto ip4addr = locator->getIp4Address();
+  const char *addr = ip4addr.toString().c_str();
 #endif
 
   if (m_proxyDataBuffer.hasPublicationReader()) {

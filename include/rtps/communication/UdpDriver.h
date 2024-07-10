@@ -20,11 +20,11 @@ public:
   UdpDriver(udpRxFunc_fp callback, void *args);
 
   const rtps::UdpConnection *createUdpConnection(Ip4Port_t receivePort);
-  bool joinMultiCastGroup(ip4_addr_t addr) const;
+  bool joinMultiCastGroup(const IPAddress& addr) const;
   void sendPacket(PacketInfo &info);
 
-  static bool isSameSubnet(ip4_addr_t addr);
-  static bool isMulticastAddress(ip4_addr_t addr);
+  static bool isSameSubnet(const IPAddress& addr);
+  static bool isMulticastAddress(const IPAddress& addr);
 
 private:
   std::array<UdpConnection, Config::MAX_NUM_UDP_CONNECTIONS> m_conns;
@@ -32,7 +32,7 @@ private:
   udpRxFunc_fp m_rxCallback = nullptr;
   void *m_callbackArgs = nullptr;
 
-  bool sendPacket(const UdpConnection &conn, ip4_addr_t &destAddr,
+  bool sendPacket(const UdpConnection &conn, const IPAddress &destAddr,
                   Ip4Port_t destPort, pbuf &buffer);
 };
 

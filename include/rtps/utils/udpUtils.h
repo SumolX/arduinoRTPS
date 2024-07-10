@@ -14,11 +14,6 @@ const uint16_t D2 = 1;  // User multicast
 const uint16_t D3 = 11; // User unicast
 } // namespace
 
-constexpr ip4_addr transformIP4ToU32(uint8_t MSB, uint8_t p2, uint8_t p1,
-                                     uint8_t LSB) {
-  return ip4_addr{PP_HTONL(LWIP_MAKEU32(MSB, p2, p1, LSB))};
-}
-
 inline Ip4Port_t getBuiltInUnicastPort(ParticipantId_t participantId) {
   return PB + DG * Config::DOMAIN_ID + D1 + PG * participantId;
 }

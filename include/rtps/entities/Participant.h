@@ -72,7 +72,7 @@ public:
   MessageReceiver *getMessageReceiver();
   bool checkAndResetHeartbeats();
 
-  bool hasReaderWithMulticastLocator(ip4_addr_t address);
+  bool hasReaderWithMulticastLocator(const IPAddress& address);
 
   void addBuiltInEndpoints(BuiltInEndpoints &endpoints);
   void newMessage(const uint8_t *data, DataSize_t size);

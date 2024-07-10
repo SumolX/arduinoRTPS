@@ -25,7 +25,7 @@ Domain::Domain()
       m_transport(ThreadPool::readCallback, &m_threadPool) {
   m_transport.createUdpConnection(getUserMulticastPort());
   m_transport.createUdpConnection(getBuiltInMulticastPort());
-  m_transport.joinMultiCastGroup(transformIP4ToU32(239, 255, 0, 1));
+  m_transport.joinMultiCastGroup(IPAddress(239, 255, 0, 1));
   createMutex(&m_mutex);
 }
 

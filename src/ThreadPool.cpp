@@ -245,7 +245,6 @@ void ThreadPool::readCallback(void *args, udp_pcb *target, pbuf *pbuf,
     pbuf = test;
   }
 
-  packet.destAddr = {0}; // not relevant
   packet.destPort = target->local_port;
   packet.srcPort = port;
   packet.buffer = PBufWrapper{pbuf};
