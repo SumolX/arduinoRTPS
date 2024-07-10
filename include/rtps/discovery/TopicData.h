@@ -35,8 +35,7 @@ struct TopicData {
         reliabilityKind(ReliabilityKind_t::BEST_EFFORT),
         durabilityKind(DurabilityKind_t::VOLATILE) {
     rtps::FullLengthLocator someLocator =
-        rtps::FullLengthLocator::createUDPv4Locator(
-            192, 168, 0, 42, rtps::getUserUnicastPort(0));
+        rtps::FullLengthLocator::createUDPv4Locator(IPAddress(192, 168, 0, 42), rtps::getUserUnicastPort(0));
     unicastLocator = someLocator;
     multicastLocator = FullLengthLocator();
   };

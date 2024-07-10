@@ -404,10 +404,9 @@ rtps::Reader *Domain::createReader(Participant &part, const char *topicName,
   attributes.unicastLocator = getUserUnicastLocator(part.m_participantId);
   if (!isZeroAddress(mcastaddress)) {
     if (ip4_addr_ismulticast(&mcastaddress)) {
-      attributes.multicastLocator = rtps::FullLengthLocator::createUDPv4Locator(
-          ip4_addr1(&mcastaddress), ip4_addr2(&mcastaddress),
-          ip4_addr3(&mcastaddress), ip4_addr4(&mcastaddress),
-          getUserMulticastPort());
+      attributes.multicastLocator =
+        rtps::FullLengthLocator::createUDPv4Locator(
+          IPAddress(mcastaddress.addr), getUserMulticastPort());
       m_transport.joinMultiCastGroup(
           attributes.multicastLocator.getIp4Address());
       registerMulticastPort(attributes.multicastLocator);

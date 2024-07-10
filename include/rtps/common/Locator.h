@@ -1,10 +1,10 @@
 #pragma once
 
+#include <array>
+
 #include "rtps/communication/UdpDriver.h"
 #include "rtps/utils/udpUtils.h"
 #include "ucdr/microcdr.h"
-
-#include <array>
 
 namespace rtps {
 enum class LocatorKind_t : int32_t {
@@ -28,12 +28,13 @@ struct FullLengthLocator {
       LOCATOR_ADDRESS_INVALID; // TODO make private such that kind and address
                                // always match?
 
-  static FullLengthLocator createUDPv4Locator(uint8_t a, uint8_t b, uint8_t c,
-                                              uint8_t d, uint32_t port) {
+  static FullLengthLocator createUDPv4Locator(const IPAddress& ip, uint32_t port) {
     FullLengthLocator locator;
     locator.kind = LocatorKind_t::LOCATOR_KIND_UDPv4;
-    locator.address = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, a, b, c, d};
     locator.port = port;
+    locator.address =
+      {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ip[0], ip[1], ip[2], ip[3]};
+
     return locator;
   }
 
@@ -84,33 +85,25 @@ struct FullLengthLocator {
 
 inline FullLengthLocator
 getBuiltInUnicastLocator(ParticipantId_t participantId) {
-  return FullLengthLocator::createUDPv4Locator(
-      Config::IP_ADDRESS[0], Config::IP_ADDRESS[1], Config::IP_ADDRESS[2],
-      Config::IP_ADDRESS[3], getBuiltInUnicastPort(participantId));
+  return FullLengthLocator::createUDPv4Locator(Config::IP_ADDRESS, getBuiltInUnicastPort(participantId));
 }
 
 inline FullLengthLocator getBuiltInMulticastLocator() {
-  return FullLengthLocator::createUDPv4Locator(239, 255, 0, 1,
-                                               getBuiltInMulticastPort());
+  return FullLengthLocator::createUDPv4Locator(IPAddress(239, 255, 0, 1), getBuiltInMulticastPort());
 }
 
 inline FullLengthLocator getUserUnicastLocator(ParticipantId_t participantId) {
-  return FullLengthLocator::createUDPv4Locator(
-      Config::IP_ADDRESS[0], Config::IP_ADDRESS[1], Config::IP_ADDRESS[2],
-      Config::IP_ADDRESS[3], getUserUnicastPort(participantId));
+  return FullLengthLocator::createUDPv4Locator(Config::IP_ADDRESS, getUserUnicastPort(participantId));
 }
 
 inline FullLengthLocator
 getUserMulticastLocator() { // this would be a unicastaddress, as
                             // defined in config
-  return FullLengthLocator::createUDPv4Locator(
-      Config::IP_ADDRESS[0], Config::IP_ADDRESS[1], Config::IP_ADDRESS[2],
-      Config::IP_ADDRESS[3], getUserMulticastPort());
+  return FullLengthLocator::createUDPv4Locator(Config::IP_ADDRESS, getUserMulticastPort());
 }
 
 inline FullLengthLocator getDefaultSendMulticastLocator() {
-  return FullLengthLocator::createUDPv4Locator(239, 255, 0, 1,
-                                               getBuiltInMulticastPort());
+  return FullLengthLocator::createUDPv4Locator(IPAddress(239, 255, 0, 1), getBuiltInMulticastPort());
 }
 
 /*

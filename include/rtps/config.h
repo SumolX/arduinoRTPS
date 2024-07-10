@@ -1,5 +1,7 @@
 #pragma once
 
+#include <IPAddress.h>
+
 #include "rtps/common/types.h"
 
 namespace rtps {
@@ -14,7 +16,7 @@ struct Config {
     /**
      *  Runtime Defaults
      */
-    static std::array<uint8_t, 4> IP_ADDRESS;
+    static IPAddress IP_ADDRESS;
     static GuidPrefix_t BASE_GUID_PREFIX;
     static uint8_t DOMAIN_ID;
 
