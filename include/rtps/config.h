@@ -17,7 +17,6 @@ struct Config {
      */
     static IPAddress ADDRESS;
     static IPAddress NETWORK;
-    static IPAddress GATEWAY;
     static GuidPrefix_t BASE_GUID_PREFIX;
     static uint8_t DOMAIN_ID;
 
