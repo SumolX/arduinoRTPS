@@ -94,11 +94,11 @@ inline FullLengthLocator getUserMulticastLocator() {
 }
 
 inline FullLengthLocator getBuiltInMulticastLocator() {
-  return FullLengthLocator::createUDPv4Locator(IPAddress(239, 255, 0, 1), getBuiltInMulticastPort());
+  return FullLengthLocator::createUDPv4Locator(Config::MULTICAST, getBuiltInMulticastPort());
 }
 
 inline FullLengthLocator getDefaultSendMulticastLocator() {
-  return FullLengthLocator::createUDPv4Locator(IPAddress(239, 255, 0, 1), getBuiltInMulticastPort());
+  return FullLengthLocator::createUDPv4Locator(Config::MULTICAST, getBuiltInMulticastPort());
 }
 
 /*

@@ -23,6 +23,7 @@ struct Config {
     /**
      *  Compile Time Constants
      */
+    static const IPAddress MULTICAST;
     static constexpr VendorId_t VENDOR_ID = {13, 37};
     static constexpr uint8_t NUM_STATELESS_WRITERS = 4;
     static constexpr uint8_t NUM_STATELESS_READERS = 4;
