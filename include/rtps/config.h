@@ -16,7 +16,7 @@ struct Config {
      *  Runtime Defaults
      */
     static IPAddress ADDRESS;
-    static IPAddress NETWORK;
+    static IPAddress NETMASK;
     static GuidPrefix_t BASE_GUID_PREFIX;
     static uint8_t DOMAIN_ID;
 

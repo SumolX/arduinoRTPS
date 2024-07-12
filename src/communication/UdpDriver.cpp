@@ -63,8 +63,8 @@ UdpDriver::createUdpConnection(Ip4Port_t receivePort) {
 }
 
 bool UdpDriver::isSameSubnet(const IPAddress& addr) {
-  return ((uint32_t)Config::NETWORK & (uint32_t)addr) ==
-         ((uint32_t)Config::NETWORK & (uint32_t)Config::ADDRESS);
+  return ((uint32_t)Config::NETMASK & (uint32_t)addr) ==
+         ((uint32_t)Config::NETMASK & (uint32_t)Config::ADDRESS);
 }
 
 bool UdpDriver::isMulticastAddress(const IPAddress& addr) {
