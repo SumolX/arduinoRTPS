@@ -1,3 +1,12 @@
+/**
+ * Copyright © 2019 Lehrstuhl Informatik 11 - RWTH Aachen University
+ * 
+ * This file is part of embeddedRTPS.
+ * 
+ * You should have received a copy of the MIT License along with embeddedRTPS.
+ * If not, see <https://mit-license.org>.
+ */
+
 #include "rtps/entities/Domain.h"
 
 #include <Arduino.h>

@@ -1,7 +1,15 @@
+/**
+ * Copyright © 2024 Paulo Cabral <sumolx@gmail.com>
+ * 
+ * This file is part of arduinoRTPS.
+ * 
+ * You should have received a copy of the MIT License along with arduinoRTPS.
+ * If not, see <https://mit-license.org>.
+ */
+
 #include "rtps/config.h"
 
 namespace rtps {
-
 /**
  *  Default Network Configuration which
  *  can be overriden depending on interfaces.
